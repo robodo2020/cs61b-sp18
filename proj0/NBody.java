@@ -1,17 +1,17 @@
 public class NBody{
-    public static double readRadius(String path){ // 使用static的時機 為啥這邊就一定要用？
+    public static double readRadius(String path){ 
+        // what is the timing to use "static", why we must use this here?
         In in = new In(path);
         double firstItemInFile = in.readInt();
         double secondItemInFile = in.readDouble();
-        // System.out.println(secondItemInFile);
         return secondItemInFile;
     }
     public static Planet[] readPlanets(String path){
         In in = new In(path);
         int N = in.readInt();
         double R = in.readDouble();
-        Planet[] AllPlanets = new Planet[5];
-        for (int i = 0; i < 5; i++){
+        Planet[] AllPlanets = new Planet[N];
+        for (int i = 0; i < N; i++){
             double xxPos = in.readDouble();
             double yyPos = in.readDouble();
             double xxVel = in.readDouble();
@@ -28,6 +28,7 @@ public class NBody{
         String filename = args[2];
         double Radius = readRadius(filename);
         Planet[] AllPlanets = readPlanets(filename);
+        int N = AllPlanets.length;
         String starfield = "images/starfield.jpg";
         StdDraw.enableDoubleBuffering();
 
@@ -35,23 +36,23 @@ public class NBody{
         StdDraw.clear();
         StdDraw.picture(0, 0, starfield);
 
-        for(int i = 0; i < AllPlanets.length; i++){
+        for(int i = 0; i < N; i++){
             AllPlanets[i].draw();
         }
         StdDraw.show(10);
 		
         for (double time = 0; time < T; time += dt){
-            double[] xForces = new double[5];
-            double[] yForces = new double[5];
-            for(int j = 0; j < 5; j++){
+            double[] xForces = new double[N];
+            double[] yForces = new double[N];
+            for(int j = 0; j < N; j++){
                 xForces[j] = AllPlanets[j].calcNetForceExertedByX(AllPlanets);
                 yForces[j] = AllPlanets[j].calcNetForceExertedByY(AllPlanets);
             }
-            for(int j = 0; j < 5; j++){
+            for(int j = 0; j < N; j++){
                 AllPlanets[j].update(dt, xForces[j], yForces[j]);
             }
             StdDraw.picture(0,0,starfield);
-            for (int i = 0; i < 5; i++){
+            for (int i = 0; i < N; i++){
                 AllPlanets[i].draw();
             }
             StdDraw.show();
@@ -63,11 +64,6 @@ public class NBody{
             StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
                         AllPlanets[i].xxPos, AllPlanets[i].yyPos, AllPlanets[i].xxVel,
                         AllPlanets[i].yyVel, AllPlanets[i].mass, AllPlanets[i].imgFileName);   
-}
-
-
+        }
     }
-
-
-
 }
