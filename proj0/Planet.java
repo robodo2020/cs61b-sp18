@@ -74,7 +74,7 @@ public class Planet{
         this.yyPos = this.yyPos + dt * this.yyVel;
     }
     public void draw(){
-		StdDraw.picture(this.xxPos, this.yyPos, this.imgFileName);
+		StdDraw.picture(this.xxPos, this.yyPos, "images/" + this.imgFileName);
     }
     // this 的使用時機 為什麼這份感覺好像是建立在一個要實體化的instance上面
     // 什麼時候要用this 什麼時候要用parameter引入？
