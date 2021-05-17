@@ -87,6 +87,7 @@ public class ArrayDeque<T> {
    
     public T removeFirst(){
         nextFirst = (nextFirst + 1) % size;
+        T FirstNode = array[nextFirst];
         array[nextFirst] = null;
         size -= 1;
         if (size < (array.length / RFACTOR)){
@@ -94,22 +95,27 @@ public class ArrayDeque<T> {
             nextFirst = arrayLast;
             nextLast = arrayLast;
         }
+        return FirstNode;
+
     }
     
     public T removeLast(){
-      if (nextLast == 0){
-          nextLast = arrayLast;
-      } 
-      else{
-          nextLast -= 1;
-      }
-      array[nextLast] = null;
-      size -= 1;
-      if (size < (array.length / RFACTOR)){
+        if (nextLast == 0){
+            nextLast = arrayLast;
+        } 
+        else{
+            nextLast -= 1;
+        }
+        T LastNode = array[nextLast];
+        array[nextLast] = null;
+        size -= 1;
+        if (size < (array.length / RFACTOR)){
             resize(array.length / RFACTOR); 
             nextFirst = arrayLast;
             nextLast = arrayLast;
         }
+        return LastNode;
+
     }
     
     
