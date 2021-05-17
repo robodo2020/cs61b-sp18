@@ -6,8 +6,8 @@ public class ArrayDeque<T> {
     private int nextLast;
     private int INITIAL_SIZE = 8;
 
-    public int arrayLast;
-    public int arrayStart;
+    private int arrayLast;
+    private int arrayStart;
     private int RFACTOR = 2;
 
     public ArrayDeque(){
@@ -19,17 +19,7 @@ public class ArrayDeque<T> {
         nextLast = arrayStart;
     }
 
-    public ArrayDeque(T x){
-        array = (T[]) new Object[INITIAL_SIZE];
-        arrayLast = array.length - 1;
-        arrayStart = 1;
-        size = 1;   
-        nextFirst = arrayLast;
-        nextLast = arrayStart;
-        array[0] = x;
-    }
-
-    public void addNextPointer(boolean nextFirstUse, boolean nextLastUse){
+    private void addNextPointer(boolean nextFirstUse, boolean nextLastUse){
        if(nextLastUse){
                 nextLast += 1;
             }
@@ -48,7 +38,7 @@ public class ArrayDeque<T> {
     // what resize have to do
     // 1. extend Array 
     // 2. organize former list
-    public void resize(int capacity){
+    private void resize(int capacity){
         T[] tmp = (T[]) new Object[capacity];
         reorganize();
         System.arraycopy(array, 0, tmp, 0, size);
@@ -145,32 +135,5 @@ public class ArrayDeque<T> {
         else{
             return false;
         }
-    }
-
-
-    public static void main(String[] args){
-      ArrayDeque y = new ArrayDeque(1);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addLast(2);
-      y.addFirst(5);
-
-
-        
     }
 }

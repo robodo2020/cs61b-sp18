@@ -1,16 +1,10 @@
 public class LinkedListDeque<T> {
-    // 要把type當變數用 居然要放在title???
-
-    //使用linked list結構落實 Deque
-    //使用記憶體要隨著size變化 不可以說length = 1 佔了10000memory   
-    
-    // 變數放在外面和裡面的差別？
     
     private LinkedList sentinelF;
     private LinkedList sentinelB;
     private int size;
     
-    public class LinkedList {
+    private class LinkedList {
         public T val;
         public LinkedList prev;
         public LinkedList next;
@@ -21,24 +15,13 @@ public class LinkedListDeque<T> {
         }
     }
 
-    // create empty node 
     public LinkedListDeque(){
         sentinelF = new LinkedList(null, null, null);
         sentinelB = new LinkedList(sentinelF, null, null);
         sentinelF.next = sentinelB;
         size = 0;
     }
-    // create new node
-    public LinkedListDeque(T x){
-        sentinelF = new LinkedList(null,null, null);
-        sentinelB = new LinkedList(null, null, null);
-        sentinelF.next = new LinkedList(sentinelF, x, sentinelB);
-        sentinelB.prev = sentinelF.next;
-        
-        size = 1;
-    }
-    // add, memove 不可以用loop或recursion? 要 O(1)
-    // public void addFirst(T item){
+
     public void addFirst(T item){
         sentinelF.next = new LinkedList(sentinelF, item, sentinelF.next);
         if (isEmpty()){
@@ -155,37 +138,5 @@ public class LinkedListDeque<T> {
             return recur(i+1,cur.next, index);
         }
     }
-    
-    public void printFrontandBack(){
-        System.out.println(sentinelF.val);
-        System.out.println(sentinelF.next.val);
-        System.out.println(sentinelF.next.prev.val);
-        System.out.println(sentinelB.val);
-        System.out.println(sentinelB.prev.val);
-        System.out.println(sentinelB.prev.next.val);
-    }
-    
 
-
-    public static void main(String[] args){
-        LinkedListDeque x = new LinkedListDeque();
-        x.addLast("s");
-        x.addLast("t");
-        x.addLast("r");
-        x.addLast("i");
-        x.addLast("n");
-        x.printDeque();
-        System.out.println(x.getRecursive(0));
-
-        // System.out.println(x.removeLast());
-        // System.out.println(x.get(4));
-        // System.out.println(x.removeLast());
-        // System.out.println(x.get(3));
-        // x.printDeque();
-        
-        
-        // x.printFrontandBack();
-    
-        
-    }
 }
