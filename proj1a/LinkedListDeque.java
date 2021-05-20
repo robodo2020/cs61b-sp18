@@ -8,21 +8,21 @@ public class LinkedListDeque<T> {
         public T val;
         public LinkedList prev;
         public LinkedList next;
-        public LinkedList(LinkedList p, T i, LinkedList n){
+        public LinkedList(LinkedList p, T i, LinkedList n) {
             prev = p;
             val = i;
             next = n;
         }
     }
 
-    public LinkedListDeque(){
+    public LinkedListDeque() {
         sentinelF = new LinkedList(null, null, null);
         sentinelB = new LinkedList(sentinelF, null, null);
         sentinelF.next = sentinelB;
         size = 0;
     }
 
-    public void addFirst(T item){
+    public void addFirst(T item) {
         sentinelF.next = new LinkedList(sentinelF, item, sentinelF.next);
         if (isEmpty()){
             sentinelB.prev = sentinelF.next;  
@@ -33,8 +33,8 @@ public class LinkedListDeque<T> {
         size += 1;
     }
 
-    // public void addLast(T item){
-    public void addLast(T item){
+    
+    public void addLast(T item) {
         sentinelB.prev.next = new LinkedList(sentinelB.prev, item, sentinelB);
         if (isEmpty()){
             sentinelB.prev = sentinelF.next;
@@ -45,7 +45,7 @@ public class LinkedListDeque<T> {
         size += 1;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         if (size == 0){
             return true;
         }
@@ -53,10 +53,8 @@ public class LinkedListDeque<T> {
             return false;
         }
     }
-
-    // time complexity = constant
     
-    public int size(){
+    public int size() {
         return size;
     }
 
@@ -71,8 +69,10 @@ public class LinkedListDeque<T> {
     }
 
    
-    public T removeFirst(){
-
+    public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         T value = sentinelF.next.val;
         sentinelF.next.prev = null;
         sentinelF.next = sentinelF.next.next;
@@ -84,7 +84,9 @@ public class LinkedListDeque<T> {
     
     
     public T removeLast(){
-        // LinkedList value = sentinelB.prev;
+        if (size == 0) {
+            return null;
+        }
         T value = sentinelB.prev.val;
         sentinelB.prev.next = null;
         sentinelB.prev = sentinelB.prev.prev;
@@ -94,16 +96,18 @@ public class LinkedListDeque<T> {
         return value;
     }
 
-    // //用iteration 不可用recursion
-    // public T get(int index){
+    
     public T get(int index){
-        //解決index > size,但是還是會噴出-1 這樣不夠好 研究看能不能純噴error
         if (index > size){
             System.out.println("Error: function get input should be smaller than size");
             return null;
         }
+        if (index < 0) {
+            System.out.println("Error: function get input should be positive number");
+            return null;
+        }
 
-        int i = 1;
+        int i = 0;
         LinkedList cur = sentinelF.next;
         while(i <= size){
             if(i == index){
@@ -119,14 +123,19 @@ public class LinkedListDeque<T> {
 
     }
 
-    // 用recursion 寫 get
-    public T getRecursive(int index){
-        if (index > size || index < 1){
+    
+    public T getRecursive(int index) {
+        if (index > size) {
             System.out.println("Error: function get input should be smaller than size");
             return null;
         }
+        if (index < 0) {
+            System.out.println("Error: function get input should be positive number");
+            return null;
+        }
+        
         LinkedList cur = sentinelF.next;
-        int i = 1;
+        int i = 0;
         return recur(i, cur, index);
     }
 
@@ -138,5 +147,4 @@ public class LinkedListDeque<T> {
             return recur(i+1,cur.next, index);
         }
     }
-
 }
