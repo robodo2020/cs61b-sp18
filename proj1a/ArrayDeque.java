@@ -76,6 +76,9 @@ public class ArrayDeque<T> {
     }
    
     public T removeFirst(){
+        if (size == 0) {
+            return null;
+        }
         nextFirst = (nextFirst + 1) % size;
         T FirstNode = array[nextFirst];
         array[nextFirst] = null;
@@ -90,6 +93,9 @@ public class ArrayDeque<T> {
     }
     
     public T removeLast(){
+        if (size == 0) {
+            return null;
+        }
         if (nextLast == 0){
             nextLast = arrayLast;
         } 
@@ -125,7 +131,7 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index){
-        return array[(nextFirst + 1 + index) % size];
+        return array[(nextFirst + 1 + index) % array.length];
     }
 
     public boolean isEmpty(){
@@ -136,4 +142,22 @@ public class ArrayDeque<T> {
             return false;
         }
     }
+
+    public static void main(String[] args){
+        ArrayDeque y = new ArrayDeque();
+        y.addLast(5);
+        y.addFirst(4);
+        y.addFirst(3);
+        y.addFirst(2);
+        y.addFirst(1);
+        y.addLast(6);
+        y.addLast(7);
+        y.addLast(8);
+        y.addLast(9);
+        y.addLast(10);
+
+        
+        System.out.println(y.get(10));
+
+      }
 }
