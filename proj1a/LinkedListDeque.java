@@ -5,9 +5,9 @@ public class LinkedListDeque<T> {
     private int size;
     
     private class LinkedList {
-        public T val;
-        public LinkedList prev;
-        public LinkedList next;
+        private T val;
+        private LinkedList prev;
+        private LinkedList next;
         public LinkedList(LinkedList p, T i, LinkedList n) {
             prev = p;
             val = i;
@@ -24,10 +24,10 @@ public class LinkedListDeque<T> {
 
     public void addFirst(T item) {
         sentinelF.next = new LinkedList(sentinelF, item, sentinelF.next);
-        if (isEmpty()){
+        if (isEmpty()) {
             sentinelB.prev = sentinelF.next;  
         }
-        else{
+        else {
             sentinelF.next.next.prev = sentinelF.next;
         }
         size += 1;
@@ -36,20 +36,20 @@ public class LinkedListDeque<T> {
     
     public void addLast(T item) {
         sentinelB.prev.next = new LinkedList(sentinelB.prev, item, sentinelB);
-        if (isEmpty()){
+        if (isEmpty()) {
             sentinelB.prev = sentinelF.next;
         }
-        else{
+        else {
             sentinelB.prev = sentinelB.prev.next;
         }
         size += 1;
     }
 
     public boolean isEmpty() {
-        if (size == 0){
+        if (size == 0) {
             return true;
         }
-        else{
+        else {
             return false;
         }
     }
@@ -60,7 +60,7 @@ public class LinkedListDeque<T> {
 
     public void printDeque(){
         LinkedList cur = sentinelF.next;
-        for(int i = 1; i <= size; i++){
+        for(int i = 1; i <= size; i++) {
             System.out.print(cur.val);
             System.out.print(" ");
             cur = cur.next;
@@ -97,8 +97,8 @@ public class LinkedListDeque<T> {
     }
 
     
-    public T get(int index){
-        if (index > size){
+    public T get(int index) {
+        if (index > size) {
             System.out.println("Error: function get input should be smaller than size");
             return null;
         }
@@ -109,11 +109,11 @@ public class LinkedListDeque<T> {
 
         int i = 0;
         LinkedList cur = sentinelF.next;
-        while(i <= size){
-            if(i == index){
+        while (i <= size) {
+            if (i == index) {
                 break;
             }
-            else{
+            else {
                 cur = cur.next;
                 i += 1;
             }
@@ -140,10 +140,10 @@ public class LinkedListDeque<T> {
     }
 
     private T recur(int i, LinkedList cur, int index){
-        if (i == index){
+        if (i == index) {
             return cur.val;
         }
-        else{
+        else {
             return recur(i+1,cur.next, index);
         }
     }
