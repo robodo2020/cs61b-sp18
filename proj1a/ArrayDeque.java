@@ -10,7 +10,7 @@ public class ArrayDeque<T> {
     private int arrayStart;
     private int RFACTOR = 2;
 
-    public ArrayDeque(){
+    public ArrayDeque() {
         array = (T[]) new Object[INITIAL_SIZE];
         arrayLast = array.length - 1;
         arrayStart = 0;
@@ -19,16 +19,16 @@ public class ArrayDeque<T> {
         nextLast = arrayStart;
     }
 
-    private void addNextPointer(boolean nextFirstUse, boolean nextLastUse){
-       if(nextLastUse){
+    private void addNextPointer(boolean nextFirstUse, boolean nextLastUse) {
+       if (nextLastUse) {
                 nextLast += 1;
             }
-        if(nextFirstUse){
+        if (nextFirstUse) {
                 nextFirst -= 1;
             } 
         // need resize
         // if (size == array.length && nextFirst == nextLast - 1){
-        if (size == array.length){
+        if (size == array.length) {
             resize(size * RFACTOR);
             nextFirst = arrayLast;
             nextLast = size;
@@ -38,7 +38,7 @@ public class ArrayDeque<T> {
     // what resize have to do
     // 1. extend Array 
     // 2. organize former list
-    private void resize(int capacity){
+    private void resize(int capacity) {
         T[] tmp = (T[]) new Object[capacity];
         reorganize();
         System.arraycopy(array, 0, tmp, 0, size);
@@ -46,36 +46,36 @@ public class ArrayDeque<T> {
         arrayLast = capacity - 1;
 
     }
-    private void reorganize(){
+    private void reorganize() {
         T[] tmp = (T[]) new Object[size];
         int counter = 0;
         // organize from NextFirst to arrayLast
-        for (int i = nextFirst + 1; i < array.length; i++){
+        for (int i = nextFirst + 1; i < array.length; i++) {
             tmp[counter] = array[i];
            counter ++;
         }
         // organize from 0 to nextLast
-        for (int i = 0; i < nextLast; i++){
+        for (int i = 0; i < nextLast; i++) {
             tmp[counter] = array[i];
            counter ++;
         }
         array = tmp;
     }
 
-    public void addFirst(T item){
+    public void addFirst(T item) {
         array[nextFirst] = item;
         size += 1;
         addNextPointer(true,false);
     }
   
-    public void addLast(T item){
+    public void addLast(T item) {
         array[nextLast] = item;
         size += 1;
         addNextPointer(false, true);
         
     }
    
-    public T removeFirst(){
+    public T removeFirst() {
         if (size == 0) {
             return null;
         }
@@ -83,7 +83,7 @@ public class ArrayDeque<T> {
         T FirstNode = array[nextFirst];
         array[nextFirst] = null;
         size -= 1;
-        if (size < (array.length / RFACTOR)){
+        if (size < (array.length / RFACTOR)) {
             resize(array.length / RFACTOR); 
             nextFirst = arrayLast;
             nextLast = arrayLast;
@@ -92,14 +92,14 @@ public class ArrayDeque<T> {
 
     }
     
-    public T removeLast(){
+    public T removeLast() {
         if (size == 0) {
             return null;
         }
-        if (nextLast == 0){
+        if (nextLast == 0) {
             nextLast = arrayLast;
         } 
-        else{
+        else {
             nextLast -= 1;
         }
         T LastNode = array[nextLast];
@@ -115,49 +115,33 @@ public class ArrayDeque<T> {
     }
     
     
-    public int size(){
+    public int size() {
         return size;
     }
 
-    public void printDeque(){
-         for (int i = nextFirst + 1; i < array.length; i++){
+    public void printDeque() {
+         for (int i = nextFirst + 1; i < array.length; i++) {
             System.out.print(array[i]);
         }
         // organize from 0 to nextLast
-        for (int i = 0; i < nextLast; i++){
+        for (int i = 0; i < nextLast; i++) {
             System.out.print(array[i]);
         }
         System.out.println();
     }
 
-    public T get(int index){
+    public T get(int index) {
         return array[(nextFirst + 1 + index) % array.length];
     }
 
-    public boolean isEmpty(){
-        if (size == 0){
+    public boolean isEmpty() {
+        if (size == 0) {
             return true;
         }
-        else{
+        else {
             return false;
         }
     }
 
-    public static void main(String[] args){
-        ArrayDeque y = new ArrayDeque();
-        y.addLast(5);
-        y.addFirst(4);
-        y.addFirst(3);
-        y.addFirst(2);
-        y.addFirst(1);
-        y.addLast(6);
-        y.addLast(7);
-        y.addLast(8);
-        y.addLast(9);
-        y.addLast(10);
-
-        
-        System.out.println(y.get(10));
-
-      }
+    
 }
