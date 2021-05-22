@@ -29,7 +29,7 @@ public class ArrayDeque<T> {
         // need resize
         // if (size == array.length && nextFirst == nextLast - 1){
         if (size == array.length) {
-            resize(size * RFACTOR);
+            resize(size * RFACTOR, true);
             nextFirst = arrayLast;
             nextLast = size;
         }
@@ -38,9 +38,11 @@ public class ArrayDeque<T> {
     // what resize have to do
     // 1. extend Array 
     // 2. organize former list
-    private void resize(int capacity) {
+    private void resize(int capacity, boolean UseAddOrRemove) {
         T[] tmp = (T[]) new Object[capacity];
-        reorganize();
+        if (UseAddOrRemove){
+            reorganize();
+        }
         System.arraycopy(array, 0, tmp, 0, size);
         array = tmp; 
         arrayLast = capacity - 1;
@@ -84,7 +86,7 @@ public class ArrayDeque<T> {
         array[nextFirst] = null;
         size -= 1;
         if (array.length > INITIAL_SIZE && size < (array.length / RFACTOR)) {
-            resize(array.length / RFACTOR); 
+            resize(array.length / RFACTOR, false); 
             nextFirst = arrayLast;
             nextLast = arrayLast;
         }
@@ -106,7 +108,7 @@ public class ArrayDeque<T> {
         array[nextLast] = null;
         size -= 1;
         if (array.length > INITIAL_SIZE && size < (array.length / RFACTOR)){
-            resize(array.length / RFACTOR); 
+            resize(array.length / RFACTOR, false); 
             nextFirst = arrayLast;
             nextLast = arrayLast;
         }
@@ -143,47 +145,65 @@ public class ArrayDeque<T> {
         }
     }
 
-    // public static void main(String args[]){
-    //     ArrayDeque y = new ArrayDeque();
-    //     y.addLast(6);
-    //     y.printDeque();
-    //     y.addLast(7);
-    //     y.addFirst(5);
-    //     y.addFirst(4);
-    //     y.addFirst(3);
-    //     y.addFirst(2);
-    //     y.addFirst(1);
-    //     y.printDeque();
-    //     // y.addLast(8);
-    //     // y.printDeque();
-    //     y.removeFirst();    
-    //     y.removeFirst(); 
-    //     y.removeFirst(); 
-    //     y.removeFirst(); 
-    //     y.removeFirst(); 
-    //     y.removeFirst(); 
-    //     y.removeFirst(); 
-    //     y.removeFirst(); 
-    //     y.printDeque();
-    //     // y.addLast(9);
-    //     // y.addFirst(15);
-    //     // y.addFirst(14);
-    //     // y.addFirst(13);
-    //     // y.addFirst(12);
-    //     // y.addFirst(11);
-    //     // y.addLast(16);
-    //     // y.printDeque();
-    //     // y.addLast(17);
-    //     // y.printDeque();
-    //     // y.addFirst(25);
-    //     // y.printDeque();
-    //     // y.addFirst(24);
-    //     // y.addFirst(23);
-    //     // y.addFirst(22);
-    //     // y.addFirst(21);
-    //     // y.printDeque();
+    public static void main(String args[]){
+        ArrayDeque y = new ArrayDeque();
+        y.addLast(6);
+        y.printDeque();
+        y.addLast(7);
+        y.addFirst(5);
+        y.addFirst(4);
+        y.addFirst(3);
+        y.addFirst(2);
+        y.addFirst(1);
+        y.printDeque();
+        y.addLast(8);
+        y.printDeque();
+        y.addLast(9);
+        y.addFirst(15);
+        y.addFirst(14);
+        y.addFirst(13);
+        y.addFirst(12);
+        y.addFirst(11);
+        y.addLast(16);
+        y.printDeque();
+        y.addLast(17);
+        y.printDeque();
+        y.addFirst(25);
+        y.printDeque();
+        y.addFirst(24);
+        y.addFirst(23);
+        y.addFirst(22);
+        y.addFirst(21);
+        y.printDeque();
 
-    // }
+        System.out.println(y.size);
+
+        y.removeFirst();    
+        System.out.println(y.size);
+        y.removeFirst(); 
+        System.out.println(y.size);
+        y.removeFirst(); 
+        System.out.println(y.size);
+        y.removeFirst(); 
+        System.out.println(y.size);
+        y.removeFirst(); 
+        System.out.println(y.size);
+        y.removeFirst(); 
+        System.out.println(y.size);
+        y.removeFirst(); 
+        System.out.println(y.size);
+        y.removeFirst(); 
+        y.removeFirst(); 
+        y.removeFirst(); 
+        y.removeFirst(); 
+        y.removeFirst(); 
+        y.removeFirst(); 
+        y.removeFirst(); 
+        y.removeFirst(); 
+        y.removeFirst(); 
+        System.out.println(y.size);
+
+    }
 
     
 }
