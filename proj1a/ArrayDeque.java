@@ -143,47 +143,47 @@ public class ArrayDeque<T> {
         }
     }
 
-    public static void main(String args[]){
-        ArrayDeque y = new ArrayDeque();
-        y.addLast(6);
-        y.printDeque();
-        y.addLast(7);
-        y.addFirst(5);
-        y.addFirst(4);
-        y.addFirst(3);
-        y.addFirst(2);
-        y.addFirst(1);
-        y.printDeque();
-        // y.addLast(8);
-        // y.printDeque();
-        y.removeFirst();    
-        y.removeFirst(); 
-        y.removeFirst(); 
-        y.removeFirst(); 
-        y.removeFirst(); 
-        y.removeFirst(); 
-        y.removeFirst(); 
-        y.removeFirst(); 
-        y.printDeque();
-        // y.addLast(9);
-        // y.addFirst(15);
-        // y.addFirst(14);
-        // y.addFirst(13);
-        // y.addFirst(12);
-        // y.addFirst(11);
-        // y.addLast(16);
-        // y.printDeque();
-        // y.addLast(17);
-        // y.printDeque();
-        // y.addFirst(25);
-        // y.printDeque();
-        // y.addFirst(24);
-        // y.addFirst(23);
-        // y.addFirst(22);
-        // y.addFirst(21);
-        // y.printDeque();
+    // public static void main(String args[]){
+    //     ArrayDeque y = new ArrayDeque();
+    //     y.addLast(6);
+    //     y.printDeque();
+    //     y.addLast(7);
+    //     y.addFirst(5);
+    //     y.addFirst(4);
+    //     y.addFirst(3);
+    //     y.addFirst(2);
+    //     y.addFirst(1);
+    //     y.printDeque();
+    //     // y.addLast(8);
+    //     // y.printDeque();
+    //     y.removeFirst();    
+    //     y.removeFirst(); 
+    //     y.removeFirst(); 
+    //     y.removeFirst(); 
+    //     y.removeFirst(); 
+    //     y.removeFirst(); 
+    //     y.removeFirst(); 
+    //     y.removeFirst(); 
+    //     y.printDeque();
+    //     // y.addLast(9);
+    //     // y.addFirst(15);
+    //     // y.addFirst(14);
+    //     // y.addFirst(13);
+    //     // y.addFirst(12);
+    //     // y.addFirst(11);
+    //     // y.addLast(16);
+    //     // y.printDeque();
+    //     // y.addLast(17);
+    //     // y.printDeque();
+    //     // y.addFirst(25);
+    //     // y.printDeque();
+    //     // y.addFirst(24);
+    //     // y.addFirst(23);
+    //     // y.addFirst(22);
+    //     // y.addFirst(21);
+    //     // y.printDeque();
 
-    }
+    // }
 
     
 }
