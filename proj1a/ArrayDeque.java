@@ -31,7 +31,7 @@ public class ArrayDeque<T> {
             } 
         // need resize
         // if (size == array.length && nextFirst == nextLast - 1){
-        if (size == array.length) {
+        if (size == array.length - 1) {
             resize(size * RFACTOR, true);
             nextFirst = arrayLast;
             nextLast = size;
@@ -147,7 +147,4 @@ public class ArrayDeque<T> {
             return false;
         }
     }
-
-
-    
 }
