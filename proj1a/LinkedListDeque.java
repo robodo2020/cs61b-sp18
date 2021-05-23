@@ -26,8 +26,7 @@ public class LinkedListDeque<T> {
         sentinelF.next = new LinkedList(sentinelF, item, sentinelF.next);
         if (isEmpty()) {
             sentinelB.prev = sentinelF.next;  
-        }
-        else {
+        } else {
             sentinelF.next.next.prev = sentinelF.next;
         }
         size += 1;
@@ -38,29 +37,23 @@ public class LinkedListDeque<T> {
         sentinelB.prev.next = new LinkedList(sentinelB.prev, item, sentinelB);
         if (isEmpty()) {
             sentinelB.prev = sentinelF.next;
-        }
-        else {
+        } else {
             sentinelB.prev = sentinelB.prev.next;
         }
         size += 1;
     }
 
     public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return (size == 0);
     }
     
     public int size() {
         return size;
     }
 
-    public void printDeque(){
+    public void printDeque() {
         LinkedList cur = sentinelF.next;
-        for(int i = 1; i <= size; i++) {
+        for (int i = 1; i <= size; i++) {
             System.out.print(cur.val);
             System.out.print(" ");
             cur = cur.next;
@@ -83,7 +76,7 @@ public class LinkedListDeque<T> {
     }
     
     
-    public T removeLast(){
+    public T removeLast() {
         if (size == 0) {
             return null;
         }
@@ -112,8 +105,7 @@ public class LinkedListDeque<T> {
         while (i <= size) {
             if (i == index) {
                 break;
-            }
-            else {
+            } else {
                 cur = cur.next;
                 i += 1;
             }
@@ -139,12 +131,11 @@ public class LinkedListDeque<T> {
         return recur(i, cur, index);
     }
 
-    private T recur(int i, LinkedList cur, int index){
+    private T recur(int i, LinkedList cur, int index) {
         if (i == index) {
             return cur.val;
-        }
-        else {
-            return recur(i+1,cur.next, index);
+        } else {
+            return recur(i + 1, cur.next, index);
         }
     }
 }

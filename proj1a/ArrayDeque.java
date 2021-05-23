@@ -20,15 +20,15 @@ public class ArrayDeque<T> {
     }
 
     private void addNextPointer(boolean nextFirstUse, boolean nextLastUse) {
-       if (nextLastUse) {
-                nextLast = (nextLast + 1) % array.length;
+        if (nextLastUse) {
+            nextLast = (nextLast + 1) % array.length;
             }
         if (nextFirstUse) {
-                nextFirst -= 1;
-                if (nextFirst < 0) {
-                    nextFirst += array.length;
-                }
-            } 
+            nextFirst -= 1;
+            if (nextFirst < 0) {
+                nextFirst += array.length;
+            }
+        } 
     }
 
     // what resize have to do:  extend Array & organize the list
@@ -36,7 +36,7 @@ public class ArrayDeque<T> {
         T[] tmp = (T[]) new Object[capacity];
         
         int reorganizePointer = (nextFirst + 1) % array.length;
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             tmp[i] = array[reorganizePointer];
             reorganizePointer = (reorganizePointer + 1) % array.length;
         }
@@ -50,7 +50,7 @@ public class ArrayDeque<T> {
     public void addFirst(T item) {
         array[nextFirst] = item;
         size += 1;
-        addNextPointer(true,false);
+        addNextPointer(true, false);
 
         if (size == array.length) { 
             resize(size * RFACTOR);
@@ -73,7 +73,7 @@ public class ArrayDeque<T> {
         } 
         if (nextLastUse) {
             nextLast -= 1;
-            if (nextLast < 0){
+            if (nextLast < 0) {
                 nextLast += array.length;
             }
         }
@@ -84,7 +84,7 @@ public class ArrayDeque<T> {
             return null;
         }
         removeNextPointer(true, false);
-        T FirstNode = array[nextFirst];
+        T firstNode = array[nextFirst];
         array[nextFirst] = null;
         size -= 1;
         
@@ -92,8 +92,8 @@ public class ArrayDeque<T> {
         if (array.length > INITIAL_SIZE && size == (array.length / 4)) {
             resize(array.length / RFACTOR); 
         }
-        // System.out.println(FirstNode);
-        return FirstNode;
+        // System.out.println(firstNode);
+        return firstNode;
 
     }
     
@@ -103,16 +103,16 @@ public class ArrayDeque<T> {
         }
        
         removeNextPointer(false, true);
-        T LastNode = array[nextLast];
+        T lastNode = array[nextLast];
         array[nextLast] = null;
         size -= 1;
 
         //resize & reorganize part
-        if (array.length > INITIAL_SIZE && size < (array.length / 4)){
+        if (array.length > INITIAL_SIZE && size < (array.length / 4)) {
             resize((array.length / RFACTOR)); 
         }
-        // System.out.println(LastNode);
-        return LastNode;
+        // System.out.println(lastNode);
+        return lastNode;
 
     }
     
@@ -123,7 +123,7 @@ public class ArrayDeque<T> {
 
     public void printDeque() {
         int printPointer = (nextFirst + 1) % array.length;
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             System.out.println(array[printPointer] + ", ");
             printPointer = (printPointer + 1) % array.length;
         }
@@ -135,11 +135,6 @@ public class ArrayDeque<T> {
     }
 
     public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return (size == 0);
     }
 }
