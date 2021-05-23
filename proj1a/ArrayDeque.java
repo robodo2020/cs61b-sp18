@@ -30,19 +30,16 @@ public class ArrayDeque<T> {
                 }
             } 
     }
-    // what resize have to do
-    // 1. extend Array 
-    // 2. organize former list
+
+    // what resize have to do:  extend Array & organize the list
     private void resize(int capacity) {
         T[] tmp = (T[]) new Object[capacity];
         
-        int reorganizePointer = nextFirst;
+        int reorganizePointer = (nextFirst + 1) % array.length;
         for (int i = 0; i < size; i++){
             tmp[i] = array[reorganizePointer];
             reorganizePointer = (reorganizePointer + 1) % array.length;
         }
- 
-        System.arraycopy(array, 0, tmp, 0, size);
         array = tmp; 
         arrayLast = capacity - 1;
         nextFirst = arrayLast;
@@ -95,6 +92,7 @@ public class ArrayDeque<T> {
         if (array.length > INITIAL_SIZE && size == (array.length / 4)) {
             resize(array.length / RFACTOR); 
         }
+        // System.out.println(FirstNode);
         return FirstNode;
 
     }
@@ -124,7 +122,7 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        int printPointer = nextFirst;
+        int printPointer = (nextFirst + 1) % array.length;
         for (int i = 0; i < size; i++){
             System.out.println(array[printPointer] + ", ");
             printPointer = (printPointer + 1) % array.length;
