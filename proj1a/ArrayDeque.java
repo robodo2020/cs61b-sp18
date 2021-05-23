@@ -30,8 +30,7 @@ public class ArrayDeque<T> {
                 }
             } 
         // need resize
-        // if (size == array.length && nextFirst == nextLast - 1){
-        if (size == array.length - 1) {
+        if (size >= array.length - 1) { 
             resize(size * RFACTOR, true);
             nextFirst = arrayLast;
             nextLast = size;
@@ -43,14 +42,17 @@ public class ArrayDeque<T> {
     // 2. organize former list
     private void resize(int capacity, boolean UseAddOrRemove) {
         T[] tmp = (T[]) new Object[capacity];
-        if (UseAddOrRemove){
-            reorganize();
-        }
+        // if (UseAddOrRemove){
+        reorganize();
+        // }
+        
         System.arraycopy(array, 0, tmp, 0, size);
         array = tmp; 
         arrayLast = capacity - 1;
 
     }
+
+
     private void reorganize() {
         T[] tmp = (T[]) new Object[size];
         int counter = 0;
@@ -93,6 +95,7 @@ public class ArrayDeque<T> {
             nextFirst = arrayLast;
             nextLast = arrayLast;
         }
+        System.out.println(FirstNode);
         return FirstNode;
 
     }
@@ -111,10 +114,11 @@ public class ArrayDeque<T> {
         array[nextLast] = null;
         size -= 1;
         if (array.length > INITIAL_SIZE && size < (array.length / RFACTOR)){
-            resize(array.length / RFACTOR, false); 
+            resize((array.length / RFACTOR) + 1, false); 
             nextFirst = arrayLast;
-            nextLast = arrayLast;
+            nextLast = arrayLast - 1;
         }
+        System.out.println(LastNode);
         return LastNode;
 
     }
@@ -136,6 +140,7 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
+        System.out.println(array[(nextFirst + 1 + index) % array.length]);
         return array[(nextFirst + 1 + index) % array.length];
     }
 
@@ -147,4 +152,5 @@ public class ArrayDeque<T> {
             return false;
         }
     }
+   
 }
