@@ -55,17 +55,18 @@ public class ArrayDeque<T> {
 
     private void reorganize() {
         T[] tmp = (T[]) new Object[size];
-        int counter = 0;
-        // organize from NextFirst to arrayLast
-        for (int i = nextFirst + 1; i < array.length; i++) {
-            tmp[counter] = array[i];
-           counter ++;
+        int nextFirstloop = nextFirst + 1;
+
+        for (int i = 0; i < size; i++){
+            tmp[i] = array[nextFirstloop];
+            if (nextFirstloop == arrayLast){
+                nextFirstloop = 0;
+            }
+            else {
+                nextFirstloop += 1;   
+            }
         }
-        // organize from 0 to nextLast
-        for (int i = 0; i < nextLast; i++) {
-            tmp[counter] = array[i];
-           counter ++;
-        }
+
         array = tmp;
     }
 
@@ -93,9 +94,9 @@ public class ArrayDeque<T> {
         if (array.length > INITIAL_SIZE && size < (array.length / RFACTOR)) {
             resize(array.length / RFACTOR, false); 
             nextFirst = arrayLast;
-            nextLast = arrayLast;
+            nextLast = arrayLast - 1;
         }
-        System.out.println(FirstNode);
+        // System.out.println(FirstNode);
         return FirstNode;
 
     }
@@ -118,7 +119,7 @@ public class ArrayDeque<T> {
             nextFirst = arrayLast;
             nextLast = arrayLast - 1;
         }
-        System.out.println(LastNode);
+        // System.out.println(LastNode);
         return LastNode;
 
     }
@@ -140,7 +141,7 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
-        System.out.println(array[(nextFirst + 1 + index) % array.length]);
+        // System.out.println(array[(nextFirst + 1 + index) % array.length]);
         return array[(nextFirst + 1 + index) % array.length];
     }
 
