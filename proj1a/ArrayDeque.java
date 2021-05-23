@@ -22,7 +22,7 @@ public class ArrayDeque<T> {
     private void addNextPointer(boolean nextFirstUse, boolean nextLastUse) {
         if (nextLastUse) {
             nextLast = (nextLast + 1) % array.length;
-            }
+        }
         if (nextFirstUse) {
             nextFirst -= 1;
             if (nextFirst < 0) {
