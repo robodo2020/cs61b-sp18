@@ -257,6 +257,17 @@ public class IntList {
         A = prev;
         return A;
 
+        // solutions from others
+//        if (A == null) {
+//            return A;
+//        }
+//        IntList reversed, restOfList;
+//        for (reversed = null; A != null; A = restOfList) {
+//            restOfList = A.rest;
+//            A.rest = reversed;
+//            reversed = A;
+//        }
+//        return reversed;
     }
 }
 
