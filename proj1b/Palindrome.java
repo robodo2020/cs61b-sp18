@@ -1,15 +1,16 @@
 public class Palindrome {
 
 
-    public Deque<Character> wordToDeque(String word){
-       // 這行意思？
-        Deque D = new LinkedListDeque(); //這個class到底是算Deque還是算LinkedListDeque?
-        for (int i = 0; i < word.length(); i++){
+    public Deque<Character> wordToDeque(String word) {
+       // Should get understand about Deque<Character>
+        Deque D = new LinkedListDeque();
+        // Get understand about whether D object is Deque or LinkedListDeque?
+        for (int i = 0; i < word.length(); i++) {
             D.addLast(word.charAt(i));
         }
         return D;
     }
-    public boolean isPalindrome(String word){
+    public boolean isPalindrome(String word) {
         Deque checkWord = wordToDeque(word);
 
         return recurPalindrome(checkWord);
@@ -25,7 +26,7 @@ public class Palindrome {
 //        return true;
     }
 
-    private boolean recurPalindrome(Deque checkWord){
+    private boolean recurPalindrome(Deque checkWord) {
         // base case
         if (checkWord.size() < 2) {
             return true;
@@ -37,21 +38,22 @@ public class Palindrome {
         return (front == last) && recurPalindrome(checkWord);
     }
 
-    public boolean isPalindrome(String word, CharacterComparator cc){
+    public boolean isPalindrome(String word, CharacterComparator cc) {
         Deque checkWord = wordToDeque(word);
         return recurPalindrome(checkWord, cc);
 
         // flake should return true
     }
 
-    private boolean recurPalindrome(Deque checkWord, CharacterComparator cc){
-        if (checkWord.size() < 2){
+    private boolean recurPalindrome(Deque checkWord, CharacterComparator cc) {
+        if (checkWord.size() < 2) {
             return true;
         }
         char front = checkWord.removeFirst().toString().charAt(0);
         char last = checkWord.removeLast().toString().charAt(0);
         // the code above transform the class from Object -> String -> char
-        // solution from here: https://stackoverflow.com/questions/13628312/conversion-from-object-to-char-in-java
+        // solution from here:
+        // https://stackoverflow.com/questions/13628312/conversion-from-object-to-char-in-java
         // should figure out Object and the solution without transforming
 
         return cc.equalChars(front, last) && recurPalindrome(checkWord, cc);

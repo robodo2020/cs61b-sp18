@@ -18,7 +18,7 @@ public class TestPalindrome {
 
 
     @Test
-    public void testIsPalindrome(){
+    public void testIsPalindrome() {
         assertFalse(palindrome.isPalindrome("cat"));
         assertFalse(palindrome.isPalindrome("Wow"));
         assertTrue(palindrome.isPalindrome("cabac"));
@@ -29,7 +29,7 @@ public class TestPalindrome {
     }
 
     @Test
-    public void testisPalindromeOffByOne(){
+    public void testisPalindromeOffByOne() {
         CharacterComparator cc = new OffByOne();
         // Get understand about cc whether the object is OffByOne or CharacterComparator?
         assertTrue(palindrome.isPalindrome("flake", cc));
@@ -40,7 +40,7 @@ public class TestPalindrome {
         assertFalse(palindrome.isPalindrome("abcd", cc));
     }
     @Test
-    public void testisPalindromeOffByN(){
+    public void testisPalindromeOffByN() {
         CharacterComparator cc = new OffByN(5);
         assertTrue(palindrome.isPalindrome("toity", cc));
         assertTrue(palindrome.isPalindrome("augylpf", cc));
